@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Still Happy (Tracer Yellow) — Vector Recreation</title>
+  <style>
+    :root {
+      --bg: #111111;
+      --panel: #181818;
+      --line: #5b5220;
+      --fill: #d6ca79;
+      --fill-2: #c8be6b;
+      --ink: #161508;
+      --muted: #989898;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top, #202020, #0f0f0f 60%);
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .wrap {
+      width: min(100%, 1100px);
+      background: color-mix(in srgb, var(--panel) 90%, black);
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      box-shadow: 0 24px 50px rgba(0,0,0,.35);
+      overflow: hidden;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid #2a2a2a;
+      background: rgba(255,255,255,.015);
+    }
+    .toolbar h1 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 auto 0 0;
+      letter-spacing: .2px;
+    }
+    button {
+      border: 1px solid #393939;
+      background: #232323;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:hover { background: #2b2b2b; }
+    .stage {
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      min-height: 720px;
+      background: radial-gradient(circle at 50% 35%, #161616, #0b0b0b 70%);
+    }
+    .artboard {
+      width: min(90vmin, 760px);
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .note {
+      padding: 0 18px 18px;
+      color: #b0b0b0;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .light-bg .stage {
+      background: #f7f7f7;
+    }
+    .light-bg .wrap {
+      border-color: #d8d8d8;
+    }
+    .light-bg .note { color: #555; }
+    .light-bg .toolbar { border-bottom-color: #dedede; }
+    .light-bg button { background: #fff; color: #111; border-color: #cfcfcf; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app">
+    <div class="toolbar">
+      <h1>Still Happy (Tracer Yellow) — HTML/SVG vector recreation</h1>
+      <button id="toggleBg">Toggle background</button>
+      <button id="downloadSvg">Download SVG</button>
+      <button id="downloadPng">Export PNG (3840×3840)</button>
+    </div>
+
+    <div class="stage">
+      <div class="artboard">
+        <svg id="sticker" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" aria-labelledby="title desc" role="img">
+          <title id="title">Vector recreation of Still Happy graffiti</title>
+          <desc id="desc">A rough yellow smiley face graffiti with dark outline, uneven eyes, a sinister grin, and spray paint drips.</desc>
+          <defs>
+            <radialGradient id="faceGrad" cx="44%" cy="36%" r="66%">
+              <stop offset="0%" stop-color="#e5dd9d"/>
+              <stop offset="56%" stop-color="#d6ca79"/>
+              <stop offset="100%" stop-color="#b7ac5c"/>
+            </radialGradient>
+            <linearGradient id="inkShade" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#25220b"/>
+              <stop offset="100%" stop-color="#121106"/>
+            </linearGradient>
+            <filter id="roughen" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="1" seed="4" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+            </filter>
+            <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="12" result="noise"/>
+              <feColorMatrix type="saturate" values="0"/>
+              <feComponentTransfer>
+                <feFuncA type="table" tableValues="0 0.05"/>
+              </feComponentTransfer>
+            </filter>
+          </defs>
+
+          <!-- decorative spray smudges behind -->
+          <g opacity="0.85">
+            <path d="M694 290c29-10 63 13 90 44 17 19 26 42 26 67 0 31-15 52-39 64" fill="none" stroke="#584e1f" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+            <path d="M739 284c35 8 67 28 89 60" fill="none" stroke="#2f2a10" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+            <path d="M755 356c26 10 41 26 53 55" fill="none" stroke="#635827" stroke-width="7" stroke-linecap="round" opacity="0.65"/>
+            <path d="M786 448c14 3 25 10 37 23" fill="none" stroke="#2c280f" stroke-width="6" stroke-linecap="round" opacity="0.65"/>
+            <path d="M302 315c-26-26-53-46-79-65" fill="none" stroke="#635827" stroke-width="10" stroke-linecap="round" opacity="0.65"/>
+            <path d="M266 323c-23-10-45-17-68-20" fill="none" stroke="#2e290f" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+          </g>
+
+          <!-- top rays -->
+          <g fill="#251f0c" opacity="0.9">
+            <rect x="281" y="196" width="18" height="86" rx="7" transform="rotate(-42 290 239)"/>
+            <rect x="360" y="142" width="18" height="69" rx="7" transform="rotate(-25 369 176)"/>
+            <rect x="448" y="111" width="16" height="62" rx="7" transform="rotate(-10 456 142)"/>
+            <rect x="545" y="110" width="16" height="66" rx="7" transform="rotate(9 553 143)"/>
+            <rect x="631" y="145" width="18" height="74" rx="7" transform="rotate(22 640 182)"/>
+            <rect x="715" y="193" width="18" height="97" rx="7" transform="rotate(42 724 241)"/>
+          </g>
+
+          <!-- face -->
+          <g>
+            <path d="M292 327
+                     C319 253, 390 210, 497 207
+                     C604 204, 694 245, 729 322
+                     C758 387, 754 490, 708 563
+                     C660 639, 588 677, 491 677
+                     C396 677, 321 645, 279 579
+                     C239 516, 235 423, 292 327Z"
+                  fill="#d7ca78" stroke="#403a15" stroke-width="13"/>
+            <path d="M347 267 C315 315, 297 378, 300 448" fill="none" stroke="#efe8b6" stroke-width="8" opacity="0.35" stroke-linecap="round"/>
+            <path d="M429 238 C525 217, 610 235, 683 296" fill="none" stroke="#f5efbd" stroke-width="7" opacity="0.3" stroke-linecap="round"/>
+          </g>
+
+          <!-- outline drips -->
+          <g fill="#1a1808">
+            <path d="M328 285c0 33 1 59 2 85 0 11 4 20 12 31 8 11 10 20 9 35-1 12-1 24 2 36l7-1c-1-16 0-28 1-41 1-16-3-28-12-39-6-8-8-15-8-24l-2-82z" opacity="0.95"/>
+            <path d="M689 316c-1 38-2 64-1 87 0 12 4 20 13 31 8 10 12 20 11 35-1 14 0 38 4 50l8-1c-1-13-2-37-1-52 1-17-3-30-13-42-7-8-9-15-9-24l1-84z" opacity="0.95"/>
+            <path d="M328 677c4 38 6 63 6 79 0 16 2 32 10 46 6 12 7 31 6 48h10c0-16 0-35-7-51-6-13-8-25-8-42 0-19-2-45-6-82z"/>
+            <path d="M611 674c0 34 4 58 12 78 8 19 13 47 11 84h11c1-38-4-69-14-92-7-17-10-39-10-71z" opacity="0.96"/>
+          </g>
+
+          <!-- eyes -->
+          <g>
+            <ellipse cx="396" cy="432" rx="46" ry="40" fill="#111006"/>
+            <path d="M403 458c2 19 1 30-4 44" stroke="#161508" stroke-width="13" stroke-linecap="round" fill="none"/>
+            <ellipse cx="623" cy="421" rx="42" ry="38" fill="#111006"/>
+            <path d="M632 443c0 14-1 24-3 37" stroke="#161508" stroke-width="10" stroke-linecap="round" fill="none"/>
+            <path d="M655 442c1 11 1 21-2 31" stroke="#161508" stroke-width="9" stroke-linecap="round" fill="none"/>
+          </g>
+
+          <!-- mouth -->
+          <g>
+            <path d="M336 548
+                     C430 523, 528 513, 682 524
+                     C651 579, 617 620, 553 656
+                     C466 652, 397 627, 336 548Z"
+                  fill="#1b1808" stroke="#302c11" stroke-width="8" stroke-linejoin="round"/>
+            <path d="M336 547c107 12 214 14 344-2" fill="none" stroke="#5f5724" stroke-width="3" opacity="0.55"/>
+            <path d="M385 574c22 9 34 21 45 41" stroke="#d6ca79" stroke-width="3" opacity="0.35" stroke-linecap="round"/>
+            <path d="M430 565c26 10 44 26 60 50" stroke="#d6ca79" stroke-width="3" opacity="0.22" stroke-linecap="round"/>
+            <path d="M474 560c19 9 31 20 46 39" stroke="#d6ca79" stroke-width="3" opacity="0.18" stroke-linecap="round"/>
+            <path d="M533 555c19 8 34 20 48 38" stroke="#d6ca79" stroke-width="3" opacity="0.15" stroke-linecap="round"/>
+          </g>
+
+          <!-- mouth drips -->
+          <g fill="#191707">
+            <path d="M488 640c0 40 1 66 6 91 3 14 4 28 2 42h12c1-16 0-31-3-48-5-22-6-47-6-85z"/>
+            <path d="M530 648c2 22 6 40 14 60 6 15 9 32 9 51h11c0-20-4-38-11-55-8-18-11-35-14-58z"/>
+            <path d="M566 642c3 18 8 34 17 50 7 13 12 29 13 43h11c-2-18-7-35-16-50-8-14-13-27-16-46z" opacity="0.92"/>
+          </g>
+
+          <!-- tiny speckles / spray -->
+          <g>
+            <circle cx="274" cy="438" r="5" fill="#6d632b" opacity="0.7"/>
+            <circle cx="726" cy="438" r="6" fill="#6d632b" opacity="0.65"/>
+            <circle cx="770" cy="400" r="4" fill="#6d632b" opacity="0.45"/>
+            <circle cx="233" cy="367" r="5" fill="#6d632b" opacity="0.45"/>
+            <circle cx="687" cy="690" r="5" fill="#2b280f" opacity="0.55"/>
+            <circle cx="340" cy="747" r="4" fill="#2b280f" opacity="0.55"/>
+          </g>
+
+          <rect x="0" y="0" width="1024" height="1024" fill="transparent" filter="url(#grain)" pointer-events="none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="note">
+      Built as a self-contained HTML/SVG recreation with client-side export. The PNG export preserves transparency and renders at 3840×3840.
+    </div>
+  </div>
+
+  <script>
+    const app = document.getElementById('app');
+    const svg = document.getElementById('sticker');
+    const toggleBg = document.getElementById('toggleBg');
+    const downloadSvg = document.getElementById('downloadSvg');
+    const downloadPng = document.getElementById('downloadPng');
+
+    toggleBg.addEventListener('click', () => {
+      document.body.classList.toggle('light-bg');
+    });
+
+    function getSvgString() {
+      const clone = svg.cloneNode(true);
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      clone.setAttribute('width', '1024');
+      clone.setAttribute('height', '1024');
+      return new XMLSerializer().serializeToString(clone);
+    }
+
+    function download(filename, blob) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        URL.revokeObjectURL(a.href);
+        a.remove();
+      }, 1000);
+    }
+
+    downloadSvg.addEventListener('click', () => {
+      const blob = new Blob([getSvgString()], { type: 'image/svg+xml;charset=utf-8' });
+      download('still-happy-tracer-yellow.svg', blob);
+    });
+
+    downloadPng.addEventListener('click', async () => {
+      const svgString = getSvgString();
+      const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(svgBlob);
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => {
+        const size = 3840;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, size, size);
+        ctx.drawImage(img, 0, 0, size, size);
+        canvas.toBlob((blob) => {
+          if (blob) download('still-happy-tracer-yellow-4k.png', blob);
+          URL.revokeObjectURL(url);
+        }, 'image/png');
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        alert('Export failed. Please try downloading the SVG and converting it separately.');
+      };
+      img.src = url;
+    });
+  </script>
+</body>
+</html>
